@@ -6,8 +6,6 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
     private int speed = 5;
-    [SerializeField]
-    private GameObject missilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -50,18 +48,9 @@ public class PlayerMove : MonoBehaviour
 
         transform.Translate(dir * speed * Time.deltaTime);
 
-        // If you push Fire1 button, Excute PlayerFire Method
-        if (Input.GetButton("Fire1"))
-        {
-            PlayerFire();
-        }
+
     }
 
-    void PlayerFire()
-    {
-        var missile = Instantiate(missilePrefab); //Instantitate missile
-        missile.transform.position = this.transform.position; //set missile position as player position
-        missile.transform.SetParent(this.transform);  //set missile's parent player
-    }
+
 
 }
