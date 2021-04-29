@@ -17,4 +17,6 @@ public class MissileMove : MonoBehaviour
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
+
+
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+
+    //Using for Random.Range
     [SerializeField]
     float minTime = 1;
     [SerializeField]
     float maxTime = 5;
-
 
     //present time
     private float timePassed = 0;
@@ -19,6 +20,10 @@ public class EnemyManager : MonoBehaviour
     //enemy Prefab
     [SerializeField]
     private GameObject enemyPrefab;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
