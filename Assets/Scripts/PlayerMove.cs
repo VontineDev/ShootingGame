@@ -7,6 +7,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private int speed = 5;
 
+
+    [SerializeField]
+    private GameObject explosionEffectPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +51,19 @@ public class PlayerMove : MonoBehaviour
 
         transform.Translate(dir * speed * Time.deltaTime);
 
-
     }
 
+    private void OnDestroy()
+    {
+        if (this != null)
+        {
+            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            print("Player Null");
+        }
 
+    }
 
 }

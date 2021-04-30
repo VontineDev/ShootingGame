@@ -8,6 +8,10 @@ public class EnemyMove : MonoBehaviour
     private int speed = 3;
 
     Vector3 dir;
+
+
+    [SerializeField]
+    private GameObject explosionEffectPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +53,18 @@ public class EnemyMove : MonoBehaviour
         Destroy(collision.gameObject);
         // Destroy self
         Destroy(this.gameObject);
+    }
 
+    private void OnDestroy()
+    {
+        if (this != null)
+        {
+            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            print("Enemy Null");
+
+        }
     }
 }
