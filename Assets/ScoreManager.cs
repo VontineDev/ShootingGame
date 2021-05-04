@@ -6,21 +6,28 @@ using System;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Action scoreAddFunc;
-    private int score;
-    public Text scoreText;
+    public int currentScore;
+    public int bestScore;
+    public Text txtScore;
+    public Text txtBestScore;
+
     // Start is called before the first frame update
     void Start()
     {
-        scoreAddFunc += ShowScore;
+
     }
-    public void AddScore()
+    public int GetScore()
     {
-        score++;
-        scoreAddFunc();
+        return currentScore;
     }
-    void ShowScore()
+    public void SetScore(int value)
     {
-        scoreText.text = score.ToString();
+        currentScore = value++;
+
+        txtScore.text = $"Score: {currentScore}";
+        if (currentScore > bestScore)
+        {
+            txtBestScore.text = $"BestScore: {bestScore}";
+        }
     }
 }

@@ -8,6 +8,8 @@ public class PlayerFire : MonoBehaviour
     private GameObject missilePrefab;
 
     private float timePassed;
+
+    public VariableJoystick joystickFire;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +20,23 @@ public class PlayerFire : MonoBehaviour
     void Update()
     {
         timePassed += Time.deltaTime;
+
+#if UNITY_EDITOR
+        joystickFire.gameObject.SetActive(false);
+
         // If you push Fire1 button, Excute PlayerFire Method
         if (Input.GetButton("Fire1") && timePassed > 0.2f)
         {
             Fire();
             timePassed = 0;
         }
+#elif UNITY_ANDROID
+        if (joystickFire.Horizontal != 0 && timePassed > 0.2f)
+        {
+            Fire();
+            timePassed = 0;
+        }
+#endif
     }
 
     void Fire()

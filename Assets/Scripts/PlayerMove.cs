@@ -7,9 +7,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private int speed = 5;
 
-
     [SerializeField]
     private GameObject explosionEffectPrefab;
+
+    public VariableJoystick variableJoystick;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +47,15 @@ public class PlayerMove : MonoBehaviour
         //{
 
         //}
-
+#if UNITY_EDITOR
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-
+        variableJoystick.gameObject.SetActive(false);
+#elif UNITY_ANDROID
+        float h = variableJoystick.Horizontal;
+        float v = variableJoystick.Vertical;
+#endif
         Vector3 dir = Vector3.right * h + Vector3.up * v;
-
         transform.Translate(dir * speed * Time.deltaTime);
 
     }
