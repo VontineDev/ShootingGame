@@ -24,11 +24,17 @@ public class EnemyMove : MonoBehaviour
         {
             //플레이어 찾기
             var player = GameObject.Find("Player");
-
-            //방향 구하기
-            dir = player.transform.position - dir;
-            //방향을 크기1짜리 벡터로 만들기
-            dir = dir.normalized;
+            if (player != null)
+            {
+                //방향 구하기
+                dir = player.transform.position - dir;
+                //방향을 크기1짜리 벡터로 만들기
+                dir = dir.normalized;
+            }
+            else
+            {
+                dir = Vector3.down;
+            }
 
         }
         else
@@ -49,8 +55,13 @@ public class EnemyMove : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //if(collision.transform.tag!="Dest")
+        if(collision.transform.gameObject.layer!=6)
+        {
+
+        }
         // Destroy other
         Destroy(collision.gameObject);
+        
         // Destroy self
         Destroy(this.gameObject);
     }

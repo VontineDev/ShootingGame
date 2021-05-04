@@ -7,10 +7,11 @@ public class BackgroundMove : MonoBehaviour
     [SerializeField]
     private MeshRenderer meshrenderer;
 
-    Vector2 vector = new Vector2(0, 1 * Time.deltaTime);
+    Vector2 vector;
     // Start is called before the first frame update
     void Start()
     {
+        vector = new Vector2(0, 1 * Time.deltaTime);
         // material = GetComponentInChildren<Material>();
     }
 
